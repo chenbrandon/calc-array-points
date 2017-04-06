@@ -79,68 +79,92 @@ func subtract(p1: (Int, Int), p2: (Int, Int)) -> (Int, Int) {
     return(p1.0 - p2.0, p1.1 - p2.1)
 }
 
-func add(p: (Int, Int)...) -> (Int, Int) {
+func add(p: (Int?, Int?)?...) -> (Int, Int) {
     var a = 0
     var b = 0
     for i in p {
-        a += i.0
-        b += i.1
+        if let i = i {
+            if let x = i.0, let y = i.1 {
+                a += x
+                b += y
+            }
+        }
     }
     return (a, b)
 }
-func subtract(p: (Int, Int)...) -> (Int, Int) {
+func subtract(p: (Int?, Int?)?...) -> (Int, Int) {
     var a = 0
     var b = 0
     for i in p {
-        a -= i.0
-        b -= i.1
+        if let i = i {
+            if let x = i.0, let y = i.1 {
+                a -= x
+                b -= y
+            }
+        }
     }
     return (a, b)
 }
 
 // dictionary
-func add(p1: [String: Int], p2: [String: Int]) -> [String: Int] {
+func add(p1: [String: Int]?, p2: [String: Int]?) -> [String: Int] {
     var x = 0
     var y = 0
-    if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
+    if let p1 = p1, let p2 = p2 {
+        if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
         x = a + b
         y = c + d
+        } else {
+            print("bad values")
+        }
     } else {
-        print("bad values")
+        print("passed in nil")
     }
     return ["x" : x, "y" : y]
 }
-func subtract(p1: [String: Int], p2: [String: Int]) -> [String: Int] {
+func subtract(p1: [String: Int]?, p2: [String: Int]?) -> [String: Int] {
     var x = 0
     var y = 0
-    if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
-        x = a - b
-        y = c - d
+    if let p1 = p1, let p2 = p2 {
+        if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
+            x = a - b
+            y = c - d
+        } else {
+            print("bad values")
+        }
     } else {
-        print("bad values")
+        print("passed in nil")
     }
     return ["x" : x, "y" : y]
 }
 // handle dictionary with double values
-func add(p1: [String: Double], p2: [String: Double]) -> [String: Double] {
+func add(p1: [String: Double]?, p2: [String: Double]?) -> [String: Double] {
     var x: Double = 0
     var y: Double = 0
-    if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
-        x = a + b
-        y = c + d
+    if let p1 = p1, let p2 = p2 {
+        if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
+            x = a + b
+            y = c + d
+        } else {
+            print("bad values")
+        }
     } else {
-        print("bad values")
+        print("passed in nil")
     }
     return ["x" : x, "y" : y]
 }
-func subtract(p1: [String: Double], p2: [String: Double]) -> [String: Double] {
+func subtract(p1: [String: Double]?, p2: [String: Double]?) -> [String: Double] {
     var x: Double = 0
     var y: Double = 0
-    if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
-        x = a - b
-        y = c - d
+    if let p1 = p1, let p2 = p2 {
+        if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
+            x = a - b
+            y = c - d
+        } else {
+            print("bad values")
+        }
     } else {
-        print("bad values")
+        print("passed in nil")
     }
     return ["x" : x, "y" : y]
 }
