@@ -141,7 +141,7 @@ func subtract(p1: [String: Int]?, p2: [String: Int]?) -> [String: Int] {
 func add(p1: [String: Double]?, p2: [String: Double]?) -> [String: Double] {
     var x: Double = 0
     var y: Double = 0
-    if let p1 = p1, let p2 = p2 {
+    if let p3 = p1, let p4 = p2 {
         if let a = p1["x"], let b = p2["x"], let c = p1["y"], let d = p2["y"] { // check if non nil
             x = a + b
             y = c + d
