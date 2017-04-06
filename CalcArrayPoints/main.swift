@@ -10,62 +10,117 @@ import Foundation
 
 
 // Calculator
-func add(left: Int, right: Int) -> Int {
-    return(left + right)
+func add(left: Int?, right: Int?) -> Int {
+    if let a = left, let b = right {
+        return(a + b)
+    } else {
+        print("nil values, returning 0")
+        return 0
+    }
 }
-func subtract(left: Int, right: Int) -> Int {
-    return(left - right)
+func subtract(left: Int?, right: Int?) -> Int {
+    if let a = left, let b = right {
+        return(a - b)
+    } else {
+        print("nil values, returning 0")
+        return 0
+    }
 }
-func multiply(left: Int,right: Int) -> Int {
-    return(left * right)
+func multiply(left: Int?, right: Int?) -> Int {
+    if let a = left, let b = right {
+        return(a * b)
+    } else {
+        print("nil values, returning 0")
+        return 0
+    }
 }
-func divide(left: Int, right: Int) -> Int {
-    return(left / right)
-}
-func mod(left: Int, right: Int) -> Int {
-    return(left % right)
+func divide(left: Int?, right: Int?) -> Int {
+    if let a = left, let b = right {
+        return(a / b)
+    } else {
+        print("nil values, returning 0")
+        return 0
+    }
 }
 
 // generic math operation
-func mathOperation(left: Int, right: Int, operation: (Int, Int) -> (Int)) -> Int{
-    return operation(left, right);
+func mathOperation(left: Int?, right: Int?, operation: ((Int?, Int?) -> (Int))?) -> Int{
+    if let o = operation {
+        return o(left, right);
+    } else {
+        print("invalid operation, returning 0")
+        return 0
+    }
 }
 
 
 
 // Array Fun
-func add(array: [Int]) -> Int {
+func add(array: [Int?]?) -> Int {
     var sum: Int = 0
-    for i in array {
-        sum += i
+    if let a = array {
+        for i in a {
+            if let x = i {
+                sum += x
+            } else {
+                print("bad value found. returning current sum")
+                return sum
+            }
+        }
     }
     return sum
+        
 }
 
-func multiply(array: [Int]) -> Int {
+func multiply(array: [Int?]?) -> Int {
     var sum: Int = 1
-    for i in array {
-        sum *= i
+    if let a = array {
+        for i in a {
+            if let x = i {
+                sum *= x
+            } else {
+                print("bad value found. returning current product")
+                return sum
+            }
+        }
     }
     return sum
 }
 
-func count(array: [Int]) -> Int {
-    return array.count
+func count(array: [Int?]?) -> Int {
+    if let a = array {
+        return a.count
+    } else {
+        print("nil passed, returning 0")
+        return 0
+    }
 }
 
-func average(array: [Int]) -> Int {
+func average(array: [Int?]?) -> Int {
     var sum = 0
-    let count = array.count
-    for i in array {
-        sum += i
+    if let a = array {
+        let count = a.count
+        for i in a {
+            if let x = i {
+                sum += x
+            } else {
+                print("nil value found. returning current sum divided by total numbers")
+                return count == 0 ? 0 : (sum / count)
+            }
+        }
+        return count == 0 ? 0 : (sum / count)
     }
-    return count == 0 ? 0 : (sum / count)
+    return 0
 }
 
 // generic math operation
-func reduce(array: [Int], operation: ([Int]) -> Int) -> Int {
-    return operation(array)
+func reduce(array: [Int?]?, operation: (([Int?]?) -> Int)?) -> Int {
+    if let o = operation {
+        return o(array)
+    } else {
+        print("invalid operation, returning 0")
+        return 0
+    }
 }
 
 // Points
